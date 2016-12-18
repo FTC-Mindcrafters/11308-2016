@@ -67,7 +67,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Encoder", group="Pushbot")
+@Autonomous(name="Auto Drive By Encoder", group="Pushbot")
 public class AutoDriveByEncoder_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -76,10 +76,10 @@ public class AutoDriveByEncoder_Linear extends LinearOpMode {
 
     static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
     static final double     DRIVE_GEAR_REDUCTION    = 1.0 ;     // This is < 1.0 if geared UP
-    static final double     WHEEL_DIAMETER_INCHES   = 3.0 ;     // For figuring circumference
+    static final double     WHEEL_DIAMETER_INCHES   = 2.9 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
-    static final double     DRIVE_SPEED             = 0.6;
+    static final double     DRIVE_SPEED             = 0.7;
     static final double     TURN_SPEED              = 0.5;
 
     @Override
@@ -112,11 +112,11 @@ public class AutoDriveByEncoder_Linear extends LinearOpMode {
 
         // Step through each leg of the path,
         // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        encoderDrive(DRIVE_SPEED,  48,  48, 5.0);  // S1: Forward 48 Inches with 5 Sec timeout
-        encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-        encoderDrive(DRIVE_SPEED, -24, -24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
-        encoderDrive(TURN_SPEED, -12, 12, 4.0); // S4: Turn Left 12 Inches with 4 sec timeout
-        encoderDrive(DRIVE_SPEED, 38, 38, 5.0); // S5: Forward 38 Inches with 5 sec timeout
+        encoderDrive(DRIVE_SPEED,  48,  48, 5.0);  // S1: Backwords 48 Inches with 5 Sec timeout
+        encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn left 12 Inches with 4 Sec timeout
+       // encoderDrive(DRIVE_SPEED, -24, -24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
+        //encoderDrive(TURN_SPEED, -12, 12, 4.0); // S4: Turn Left 12 Inches with 4 sec timeout
+        //encoderDrive(DRIVE_SPEED, 38, 38, 5.0); // S5: backwords 38 Inches with 5 sec timeout
 
 
 

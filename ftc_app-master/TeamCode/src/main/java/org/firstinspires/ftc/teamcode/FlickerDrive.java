@@ -32,7 +32,6 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -52,8 +51,8 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-@TeleOp(name="ComplexDrive", group="Pushbot")
-public class TriggerDrive_Test extends LinearOpMode {
+@TeleOp(name="FlickerDrive", group="Pushbot")
+public class FlickerDrive extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwarePushbot robot           = new HardwarePushbot();   // Use a Pushbot's hardware
@@ -61,7 +60,7 @@ public class TriggerDrive_Test extends LinearOpMode {
     double          clawOffset      = 0;                       // Servo mid position
     final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
 
-
+    @Override
     public void runOpMode() throws InterruptedException {
         double left;
         double right;
@@ -74,9 +73,6 @@ public class TriggerDrive_Test extends LinearOpMode {
          */
         robot.init(hardwareMap);
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Hello Driver");    //
-        telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

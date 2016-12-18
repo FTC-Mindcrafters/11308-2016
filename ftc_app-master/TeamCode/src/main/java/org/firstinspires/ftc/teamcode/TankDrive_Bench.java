@@ -67,8 +67,7 @@ public class TankDrive_Bench extends LinearOpMode {
         double left;
         double right;
         double max;
-        double arm;
-        double down;
+
 
 
 
@@ -79,9 +78,6 @@ public class TankDrive_Bench extends LinearOpMode {
          */
         robot.init(hardwareMap);
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Hello Josh and Nathan");    //
-        telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -105,15 +101,6 @@ public class TankDrive_Bench extends LinearOpMode {
             robot.rightMotor.setPower(right);
 
 
-
-
-
-
-
-            // telemetry.addData("claw",  "Offset = %.2f", clawOffset);
-            telemetry.addData("left",  "%.2f", left);
-            telemetry.addData("right", "%.2f", right);
-            telemetry.update();
 
             // Pause for metronome tick.  40 mS each cycle = update 25 times a second.
             robot.waitForTick(10);
