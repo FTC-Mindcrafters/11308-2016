@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
+import org.firstinspires.ftc.teamcode.Hardware;
 
 /**
  * This OpMode uses the common Pushbot hardware class to define the devices on the robot.
@@ -51,11 +52,11 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-@TeleOp(name="FlickerDrive", group="Pushbot")
-public class FlickerDrive extends LinearOpMode {
+@TeleOp(name="Lift flicker drive", group="test")
+public class Test extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot robot           = new HardwarePushbot();   // Use a Pushbot's hardware
+    Hardware robot           = new Hardware();   // Use a Pushbot's hardware
                                                                // could also use HardwarePushbotMatrix class.
     double          clawOffset      = 0;                       // Servo mid position
     final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
@@ -66,6 +67,7 @@ public class FlickerDrive extends LinearOpMode {
         double right;
         double max;
         double flicker;
+        double left_arm;
 
 
         /* Initialize the hardware variables.
@@ -80,11 +82,11 @@ public class FlickerDrive extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
-            // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
+
             left  = gamepad1.left_stick_y ;
             right = gamepad1.right_stick_y ;
-            flicker = gamepad1.right_trigger;
+            flicker = -gamepad1.right_trigger;
+
             // Normalize the values so neither exceed +/- 1.0
             max = Math.max(Math.abs(left), Math.abs(right));
             if (max > 1.0)
@@ -92,6 +94,7 @@ public class FlickerDrive extends LinearOpMode {
                 flicker /= max;
                 left /= max;
                 right /= max;
+                left_arm/= max;
             }
 
             robot.leftMotor.setPower(left);
@@ -104,7 +107,15 @@ public class FlickerDrive extends LinearOpMode {
             else if (gamepad1.left_bumper)
                 clawOffset -= CLAW_SPEED;
             else
-            clawOffset = 0;
+                clawOffset = 0;
+
+
+            if (gamepad1.a)
+                robot.Left_arm.setPower(1);
+            else if (gamepad1.b)
+                robot.Left_arm.setPower(-1);
+            else
+                robot.Left_arm.setPower(0);
             // Move both servos to new position.  Assume servos are mirror image of each other.
             clawOffset = Range.clip(clawOffset, -0.5, 0.5);
             robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
