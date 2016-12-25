@@ -53,10 +53,10 @@ import org.firstinspires.ftc.teamcode.Hardware;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 @TeleOp(name="Lift flicker drive", group="test")
-public class Test extends LinearOpMode {
+public class FlickerDrive  extends LinearOpMode {
 
     /* Declare OpMode members. */
-    Hardware robot           = new Hardware();   // Use a Pushbot's hardware
+    Hardware robot           = new Hardware ();   // Use a Pushbot's hardware
                                                                // could also use HardwarePushbotMatrix class.
     double          clawOffset      = 0;                       // Servo mid position
     final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
@@ -67,7 +67,7 @@ public class Test extends LinearOpMode {
         double right;
         double max;
         double flicker;
-        double left_arm;
+        double Lift_arm;
 
 
         /* Initialize the hardware variables.
@@ -86,6 +86,7 @@ public class Test extends LinearOpMode {
             left  = gamepad1.left_stick_y ;
             right = gamepad1.right_stick_y ;
             flicker = -gamepad1.right_trigger;
+            Lift_arm = 0;
 
             // Normalize the values so neither exceed +/- 1.0
             max = Math.max(Math.abs(left), Math.abs(right));
@@ -94,12 +95,13 @@ public class Test extends LinearOpMode {
                 flicker /= max;
                 left /= max;
                 right /= max;
-                left_arm/= max;
+                Lift_arm /= max;
             }
 
             robot.leftMotor.setPower(left);
             robot.rightMotor.setPower(right);
             robot.armMotor.setPower(flicker);
+            robot.Lift_arm.setPower(Lift_arm);
 
 
             if (gamepad1.right_bumper)
@@ -111,11 +113,13 @@ public class Test extends LinearOpMode {
 
 
             if (gamepad1.a)
-                robot.Left_arm.setPower(1);
+                robot.Lift_arm.setPower(1);
             else if (gamepad1.b)
-                robot.Left_arm.setPower(-1);
+                robot.Lift_arm.setPower(-1);
             else
-                robot.Left_arm.setPower(0);
+                robot.Lift_arm.setPower(0);
+
+
             // Move both servos to new position.  Assume servos are mirror image of each other.
             clawOffset = Range.clip(clawOffset, -0.5, 0.5);
             robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);

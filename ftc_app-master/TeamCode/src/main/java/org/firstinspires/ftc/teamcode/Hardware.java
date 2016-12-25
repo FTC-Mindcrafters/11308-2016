@@ -26,7 +26,7 @@ public class Hardware
     /* Public OpMode members. */
 
 
-    public DcMotor  Left_arm  = null;
+    public DcMotor  Lift_arm  = null;
     public DcMotor  leftMotor   = null;
     public DcMotor  rightMotor  = null;
     public DcMotor  armMotor    = null;
@@ -52,7 +52,7 @@ public class Hardware
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        Left_arm    =hwMap.dcMotor.get("Left_arm");
+        Lift_arm    =hwMap.dcMotor.get("Lift_arm");
         leftMotor   = hwMap.dcMotor.get("left_drive");
         rightMotor  = hwMap.dcMotor.get("right_drive");
         armMotor    = hwMap.dcMotor.get("left_arm");
@@ -63,14 +63,14 @@ public class Hardware
         leftMotor.setPower(0);
         rightMotor.setPower(0);
         armMotor.setPower(0);
-        Left_arm.setPower(0);
+        Lift_arm.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         armMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        Left_arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        Lift_arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Define and initialize ALL installed servos.
         leftClaw = hwMap.servo.get("left_hand");
